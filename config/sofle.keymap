@@ -55,57 +55,61 @@
         compatible = "zmk,keymap";
 
         default_layer {
+            label = " Qwerty";
 // ------------------------------------------------------------------------------------------------------------
-// |  `    |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   |   \   |
-// |  TAB  |  Q  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  O   |   P   | BKSPC |
-// | C/ESC |  A  |  S  |  D   |  F   |  G   |                   |  H   |  J    |  K    |  L   |   ;   |  C/'  |
-// | SHIFT |  Z  |  X  |  C   |  V   |  B   |  MUTE  |  | PLAY  |  N   |  M    |  ,    |  .   |   /   | SHIFT |
-//               | CTRL| GUI  | ALT/-| SPACE|LOWER/[ |  |RAISE/]| ENTER|  ALT/=|  GUI  | CTRL |
+// |  ESC  |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   | BKSPC |
+// |  TAB  |  Q  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  O   |   P   |   -   |
+// |   `   |  A  |  S  |  D   |  F   |  G   |                   |  H   |  J    |  K    |  L   |   ;   |   '   |
+// | SHIFT |  Z  |  X  |  C   |  V   |  B   |  PP    |  | CAPS  |  N   |  M    |  ,    |  .   |   /   | SHIFT |
+//               | GUI | ALT  | CTRL | LOWER|  SPACE |  | SPACE | RAISE| CTRL  | ALT   | GUI  |
             bindings = <
-&kp GRAVE     &kp N1 &kp N2    &kp N3    &kp N4         &kp N5                           &kp N6  &kp N7         &kp N8    &kp N9   &kp N0   &kp BSLH
-&kp TAB       &kp Q  &kp W     &kp E     &kp R          &kp T                            &kp Y   &kp U          &kp I     &kp O    &kp P    &kp BSPC
-&mt LCTRL ESC &kp A  &kp S     &kp D     &kp F          &kp G                            &kp H   &kp J          &kp K     &kp L    &kp SEMI &mt RCTRL SQT
-&kp LSHFT     &kp Z  &kp X     &kp C     &kp V          &kp B     &kp C_MUTE  &kp C_PP   &kp N   &kp M          &kp COMMA &kp DOT  &kp FSLH &kp RSHFT
-                     &kp LCTRL &kp LGUI  &mt LALT MINUS &kp SPACE &lt 1 LBKT  &lt 2 RBKT &kp RET &mt RALT EQUAL &kp RGUI  &kp RCTRL
+&kp ESC   &kp N1 &kp N2   &kp N3   &kp N4    &kp N5                      &kp N6 &kp N7    &kp N8    &kp N9   &kp N0   &kp BSPC
+&kp TAB   &kp Q  &kp W    &kp E    &kp R     &kp T                       &kp Y  &kp U     &kp I     &kp O    &kp P    &kp MINUS
+&kp GRAVE &kp A  &kp S    &kp D    &kp F     &kp G                       &kp H  &kp J     &kp K     &kp L    &kp SEMI &kp SQT
+&kp LSHFT &kp Z  &kp X    &kp C    &kp V     &kp B  &kp C_PP   &kp CAPS  &kp N  &kp M     &kp COMMA &kp DOT  &kp FSLH &mt RSHFT RET
+                 &kp LGUI &kp LALT &kp LCTRL &mo 1  &kp SPACE  &kp SPACE &mo 2  &kp RET   &kp RALT  &kp RGUI
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp PG_DN PG_UP>;
+            sensor-bindings = <&inc_dec_kp C_NEXT C_PREV &inc_dec_kp PG_UP PG_DN>;
         };
 
         lower_layer {
+            label = " Lower";
+// TODO: Some binds are waiting for shifted keycode support.
 // ------------------------------------------------------------------------------------------------------------
 // |       |  F1 |  F2 |  F3  |  F4  |  F5  |                   |  F6  |  F7   |  F8   |  F9  |  F10  |  F11  |
-// |       |   1 |   2 |   3  |   4  |   5  |                   |   6  |   7   |   8   |   9  |    0  |  F12  |
-// |       |  !  |  @  |  #   |  $   |  %   |                   |  ^   |  &    |  *    |  (   |   )   |       |
-// |       |  -  |  _  |  [   |  {   |  \   |        |  |       |  |   |  }    |  ]    |  =   |   +   |       |
+// |       |     |     |      |      |      |                   |      |       |  UP   |      |       |  F12  |
+// |       |     |     |      |      |      |                   |      | LEFT  |  DOWN |RIGHT |       |       |
+// |       |     |     |      |      |      |        |  |       | PGUP | PGDN  |       |      |       |       |
 //               |     |      |      |      |        |  |       |      |       |       |      |
             bindings = <
-&trans &kp F1    &kp F2    &kp F3   &kp F4    &kp F5                           &kp F6    &kp F7   &kp F8          &kp F9    &kp F10   &kp F11
-&trans &kp N1    &kp N2    &kp N3   &kp N4    &kp N5                           &kp N6    &kp N7   &kp N8          &kp N9    &kp N0    &kp F12
-&trans &kp EXCL  &kp AT    &kp HASH &kp DLLR  &kp PRCNT                        &kp CARET &kp AMPS &kp KP_MULTIPLY &kp LPAR  &kp RPAR  &trans
-&trans &kp MINUS &kp UNDER &kp LBKT &kp LBRC  &kp BSLH          &trans  &trans &kp PIPE  &kp RBRC &kp RBKT        &kp EQUAL &kp PLUS  &trans
-                 &trans    &trans   &trans    &ext_power EP_TOG &trans  &trans &trans    &trans   &trans          &trans
+&trans    &kp F1    &kp F2    &kp F3      &kp F4    &kp F5                    &kp F6    &kp F7    &kp F8   &kp F9    &kp F10   &kp F11
+&trans    &trans    &trans    &trans      &trans    &trans                    &trans    &trans    &kp UP   &trans    &trans    &kp F12
+&trans    &trans    &trans    &trans      &trans    &trans                    &trans    &kp LEFT  &kp DOWN &kp RIGHT &trans    &trans
+&trans    &trans    &trans    &trans      &trans    &trans    &trans   &trans &kp PG_UP &kp PG_DN &trans   &trans    &trans    &trans
+                    &trans    &trans      &trans    &trans    &trans   &trans &trans    &trans    &trans   &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp PG_DN PG_UP>;
+            sensor-bindings = <&inc_dec_kp UP DOWN &inc_dec_kp PG_UP PG_DN>;
         };
 
         raise_layer {
+            label = " Raise";
 // ------------------------------------------------------------------------------------------------------------
-// |     |  F1  |  F2  |  F3   |  F4   |  F5  |                |  F6  |  F7  |  F8   |  F9  |  F10  |  F11  |
-// |     | BT1  | BT2  |  BT3  |  BT4  |  BT5 |                | PGUP |  END |   ^   | HOME |  INS  |  F12  |
-// |     | RGBT | RGBE- | RGB+ |  BR-  |  BR+ |                | PGDN |   <- |   v   | ->   |  DEL  | C/CAPS|
-// |     | UNDO | CUT  | COPY  | PASTE |BTCLR |      |  |      | SCRL | PRVS | PLAY  | NEXT |  PSCR |       |
-//              |      |       |       |      |      |  |      |      |      |       |      |
+// |BTCLR | BT1  | BT2  |  BT3  |  BT4  |  BT5 |               |      |      |       | LBKT |  RBKT |  DEL  |
+// |EXTPWR|      |      |       |       |      |               |      |      |   UP  |      | PSCRN | EQUAL |
+// |RGBTOG|RGBBRI|      |       |       |      |               |      | LEFT |  DOWN |RIGHT |       | BSLH  |
+// |RGBEFF|RGBBRD|      |       |       |      | BLE |  |  USB | HOME | END  |       |      |       |       |
+//               |      |       |       |      |     |  |      |      |      |       |      |
             bindings = <
-&trans &kp F1          &kp F2          &kp F3          &kp F4          &kp F5                         &kp F6             &kp F7     &kp F8   &kp F9     &kp F10   &kp F11
-&trans &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2    &bt BT_SEL 3    &bt BT_SEL 4                   &kp PG_UP          &kp END    &kp UP   &kp HOME   &kp INS   &kp F12
-&trans &rgb_ug RGB_TOG &rgb_ug RGB_EFR &rgb_ug RGB_EFF &rgb_ug RGB_BRD &rgb_ug RGB_BRI                &kp PG_DN          &kp LEFT   &kp DOWN &kp RIGHT  &kp DEL   &mt RCTRL CLCK
-&trans &kp K_UNDO      &kp K_CUT       &kp K_COPY      &kp K_PASTE     &bt BT_CLR      &trans  &trans &kp SLCK           &kp K_PREV &kp K_PP &kp K_NEXT &kp PSCRN &trans
-                       &trans          &trans          &trans          &trans          &trans  &trans &ext_power EP_TOG  &trans     &trans   &trans
+&bt BT_CLR        &bt BT_SEL 0     &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4                      &none     &none     &none    &kp LBKT  &kp RBKT  &kp DEL
+&ext_power EP_TOG &none            &none        &none        &none        &none                             &none     &none     &kp UP   &none     &kp PSCRN &kp EQUAL
+&rgb_ug RGB_TOG   &rgb_ug RGB_BRI  &none        &none        &none        &none                             &none     &kp LEFT  &kp DOWN &kp RIGHT &none     &kp BSLH
+&rgb_ug RGB_EFF   &rgb_ug RGB_BRD  &none        &none        &none        &none   &out OUT_BLE &out OUT_USB &kp HOME  &kp END   &none    &none     &none     &none
+                                   &trans       &trans       &trans       &trans  &trans       &trans       &trans    &trans    &trans   &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp PG_DN PG_UP>;
+            sensor-bindings = <&inc_dec_kp LEFT RIGHT &inc_dec_kp PG_UP PG_DN>;
         };
     };
 };
